@@ -1,0 +1,89 @@
+import os
+
+pedidos = []
+
+def clear_screen():
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def registrar_pedido():
+    clear_screen()
+  
+    nombre_cliente = input("Ingrese el nombre del cliente: ")
+    direccion = input("Ingrese la dirección del cliente: ")
+    contacto = input("Ingrese el contacto del cliente: ")
+    sexo = input("Ingrese el sexo del cliente (M/F): ")
+    lugar_entrega = input("Ingrese la descripción de la casa o lugar de entrega: ")
+
+    nombre_producto = input("Ingrese el nombre del producto: ")
+    referencia = input("Ingrese la referencia del producto: ")
+    cantidad = int(input("Ingrese la cantidad solicitada: "))
+
+
+    pedido = {
+        "cliente": {
+            "nombre": nombre_cliente,
+            "direccion": direccion,
+            "contacto": contacto,
+            "sexo": sexo,
+            "lugar_entrega": lugar_entrega
+        },
+        "producto": {
+            "nombre": nombre_producto,
+            "referencia": referencia,
+            "cantidad": cantidad
+        }
+    }
+
+
+    pedidos.append(pedido)
+
+    clear_screen()
+    print("\nPedido registrado correctamente.")
+
+def mostrar_pedidos():
+    clear_screen()
+
+    if len(pedidos) == 0:
+        print("\nNo hay pedidos registrados.")
+    else:
+        print("\nListado de Pedidos:")
+        for idx, pedido in enumerate(pedidos, start=1):
+            print(f"\nPedido {idx}:")
+            print(f"Cliente:")
+            print(f"  Nombre: {pedido['cliente']['nombre']}")
+            print(f"  Dirección: {pedido['cliente']['direccion']}")
+            print(f"  Contacto: {pedido['cliente']['contacto']}")
+            print(f"  Sexo: {pedido['cliente']['sexo']}")
+            print(f"  Lugar de Entrega: {pedido['cliente']['lugar_entrega']}")
+            print(f"Producto:")
+            print(f"  Nombre: {pedido['producto']['nombre']}")
+            print(f"  Referencia: {pedido['producto']['referencia']}")
+            print(f"  Cantidad: {pedido['producto']['cantidad']}")
+
+while True:
+    print("\n--- Sistema de Registro de Pedidos ---")
+    print("1. Registrar un nuevo pedido")
+    print("2. Mostrar todos los pedidos registrados")
+    print("3. Salir")
+
+    opcion = input("Seleccione una opción (1/2/3): ")
+
+    if opcion == "1":
+        clear_screen()
+        print("\nRegistro de nuevo pedido:")
+        registrar_pedido()
+
+    elif opcion == "2":
+        clear_screen()
+        print("\nMostrando todos los pedidos registrados:")
+        mostrar_pedidos()
+
+    elif opcion == "3":
+        clear_screen()
+        print("\n¡Hasta luego!")
+        break
+
+    else:
+        clear_screen()
+        print("\nOpción inválida. Por favor, seleccione una opción válida (1/2/3).")
