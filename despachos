@@ -1,0 +1,72 @@
+
+despachos = {}
+numero_despacho = 1  
+
+def registrar_salida():
+    global numero_despacho
+
+    placa = input('Ingrese la placa del vehículo: ')
+    descripcion_vehiculo = input('Ingrese la descripción del vehículo: ')
+    nombre_conductor = input('Ingrese el nombre del conductor: ')
+    contacto_conductor = input('Ingrese el contacto del conductor: ')
+    ruta = input('Ingrese la ruta: ')
+    descripcion_carga = input('Ingrese la descripción de la carga: ')
+
+    nuevo_despacho = {
+        'placa': placa,
+        'descripcion_vehiculo': descripcion_vehiculo,
+        'nombre_conductor': nombre_conductor,
+        'contacto_conductor': contacto_conductor,
+        'ruta': ruta,
+        'descripcion_carga': descripcion_carga,
+        'numero_despacho': numero_despacho
+    }
+
+    despachos[numero_despacho] = nuevo_despacho
+
+    numero_despacho += 1
+
+    return nuevo_despacho
+
+def mostrar_despacho(numero):
+ 
+    despacho = despachos.get(numero)
+    if despacho:
+        print("\nInformación del despacho:")
+        print(f"Número de Despacho: {despacho['numero_despacho']}")
+        print(f"Placa del Vehículo: {despacho['placa']}")
+        print(f"Descripción del Vehículo: {despacho['descripcion_vehiculo']}")
+        print(f"Nombre del Conductor: {despacho['nombre_conductor']}")
+        print(f"Contacto del Conductor: {despacho['contacto_conductor']}")
+        print(f"Ruta: {despacho['ruta']}")
+        print(f"Descripción de la Carga: {despacho['descripcion_carga']}")
+    else:
+        print(f"No existe un despacho con el número {numero}.")
+
+while True:
+    print("\n--- Sistema de Registro de Despachos ---")
+    print('1. Registrar nuevo despacho')
+    print("2. Mostrar información de un despacho")
+    print("3. Salir")
+
+    opcion = input('Seleccione una opción (1/2/3): ')
+
+    if opcion == "1":
+        print("\nRegistro de nuevo despacho:")
+        nuevo_despacho = registrar_salida()
+        print("\nDespacho registrado correctamente.")
+
+        respuesta = input("¿Desea registrar otro despacho? (s/n): ")
+        if respuesta.lower() != 's':
+            break  
+
+    elif opcion == "2":
+        numero_busqueda = int(input('\nIngrese el número de despacho a consultar: '))
+        mostrar_despacho(numero_busqueda)
+
+    elif opcion == '3':
+        print('\n¡chao rey!')
+        break
+
+    else:
+        print('\nOpción inválida. Por favor, seleccione una opción válida (1/2/3).')
